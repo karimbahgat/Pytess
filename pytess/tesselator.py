@@ -31,43 +31,49 @@
 #############################################################################
 
 """
-voronoi - compute Voronoi diagram or Delaunay triangulation
-
-voronoi [-t -p -d]  [filename]
-
-Voronoi reads from filename (or standard input if no filename given) for a set 
-of points in the plane and writes either the Voronoi diagram or the Delaunay 
-triangulation to the standard output.  Each input line should consist of two 
-real numbers, separated by white space.
-
-If option -t is present, the Delaunay triangulation is produced. 
-Each output line is a triple i j k, which are the indices of the three points
-in a Delaunay triangle. Points are numbered starting at 0.
-
-If option -t is not present, the Voronoi diagram is produced.  
-There are four output record types.
-
-s a b      indicates that an input point at coordinates a b was seen.
-l a b c    indicates a line with equation ax + by = c.
-v a b      indicates a vertex at a b.
-e l v1 v2  indicates a Voronoi segment which is a subsegment of line number l
-           with endpoints numbered v1 and v2.  If v1 or v2 is -1, the line 
-           extends to infinity.
-
-Other options include:
-
-d    Print debugging info
-
-p    Produce output suitable for input to plot (1), rather than the forms 
-     described above.
-
-On unsorted data uniformly distributed in the unit square, voronoi uses about 
-20n+140 bytes of storage.
-
-AUTHOR
-Steve J. Fortune (1987) A Sweepline Algorithm for Voronoi Diagrams,
-Algorithmica 2, 153-174.
+Where the actual behind-the scenes work takes place. This is
+the original voronoi diagram calculator/Delauney triangulator
+by Bill Simons and Carson Farmer. 
 """
+
+##"""
+##voronoi - compute Voronoi diagram or Delaunay triangulation
+##
+##voronoi [-t -p -d]  [filename]
+##
+##Voronoi reads from filename (or standard input if no filename given) for a set 
+##of points in the plane and writes either the Voronoi diagram or the Delaunay 
+##triangulation to the standard output.  Each input line should consist of two 
+##real numbers, separated by white space.
+##
+##If option -t is present, the Delaunay triangulation is produced. 
+##Each output line is a triple i j k, which are the indices of the three points
+##in a Delaunay triangle. Points are numbered starting at 0.
+##
+##If option -t is not present, the Voronoi diagram is produced.  
+##There are four output record types.
+##
+##s a b      indicates that an input point at coordinates a b was seen.
+##l a b c    indicates a line with equation ax + by = c.
+##v a b      indicates a vertex at a b.
+##e l v1 v2  indicates a Voronoi segment which is a subsegment of line number l
+##           with endpoints numbered v1 and v2.  If v1 or v2 is -1, the line 
+##           extends to infinity.
+##
+##Other options include:
+##
+##d    Print debugging info
+##
+##p    Produce output suitable for input to plot (1), rather than the forms 
+##     described above.
+##
+##On unsorted data uniformly distributed in the unit square, voronoi uses about 
+##20n+140 bytes of storage.
+##
+##AUTHOR
+##Steve J. Fortune (1987) A Sweepline Algorithm for Voronoi Diagrams,
+##Algorithmica 2, 153-174.
+##"""
 
 #############################################################################
 #

@@ -1,4 +1,4 @@
-import pytesselate
+import pytess
 import itertools
 
 # Define data
@@ -24,7 +24,7 @@ points = test_random
 def test_triangulate(points):
     
     # Run test
-    triangles = pytesselate.triangulate(points)
+    triangles = pytess.triangulate(points)
 
     # Visualize
 
@@ -50,7 +50,7 @@ def test_voronoi(points):
     
     # Run test
     
-    polygons = pytesselate.voronoi(points)
+    polygons = pytess.voronoi(points)
 
     # Visualize
 
