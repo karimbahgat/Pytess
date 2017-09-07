@@ -9,7 +9,7 @@ C++ version of a Delauney triangulator.
 Platforms
 ---------
 
-Tested on Python version 2.x.
+Tested on Python version 2.x.  As of 0.1.1 should work with both Python 2.x and 3.x.
 
 Dependencies
 ------------
