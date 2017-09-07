@@ -85,7 +85,7 @@ def voronoi(points, buffer_percent=100):
 
     # Turn unordered result edges into ordered polygons
     polygons = list()
-    for sitepoint,polyedges in poly_dict.items():
+    for sitepoint,polyedges in list(poly_dict.items()):
         polyedges = [edge[1:] for edge in polyedges]
         poly = list()
         firststart,firstend = polyedges.pop(0)
