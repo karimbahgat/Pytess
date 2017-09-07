@@ -68,6 +68,7 @@ Karim Bahgat (2015)
 CHANGES
 -------
 
+0.1.1 (2017-09-07) - Python 3.x compatibility
 0.1.0 (2015-06-25)
 ~~~~~~~~~~~~~~~~~~
 
