@@ -71,7 +71,7 @@ def voronoi(points, buffer_percent=100):
 
     # Create fake sitepoints around the point extent to correct for infinite polygons
     # For a similar approach and problem see: http://gis.stackexchange.com/questions/11866/voronoi-polygons-that-run-out-to-infinity
-    xs,ys = zip(*uniqpoints)[:2]
+    xs,ys = list(zip(*uniqpoints))[:2]
     pointswidth = max(xs) - min(xs)
     pointsheight = max(ys) - min(ys)
     xbuff,ybuff = ( pointswidth / 100.0 * buffer_percent , pointsheight / 100.0 * buffer_percent )

@@ -194,15 +194,15 @@ def voronoi(siteList,context):
       priorityQ = PriorityQueue(siteList.ymin,siteList.ymax,len(siteList))
       siteIter = siteList.iterator()
       
-      bottomsite = next(siteIter)
+      bottomsite = next(siteIter, None)
       context.outSite(bottomsite)
-      newsite = next(siteIter)
+      newsite = next(siteIter, None)
       minpt = Site(-BIG_FLOAT,-BIG_FLOAT)
       while True:
           if not priorityQ.isEmpty():
               minpt = priorityQ.getMinPt()
 
-          if (newsite and (priorityQ.isEmpty() or cmp(newsite,minpt) < 0)):
+          if (newsite and (priorityQ.isEmpty() or newsite < minpt)):
               # newsite is smallest -  this is a site event
               context.outSite(newsite)
               
@@ -241,7 +241,7 @@ def voronoi(siteList,context):
                   # push the Halfedge into the ordered linked list of vertices
                   priorityQ.insert(bisector,p,newsite.distance(p))
               
-              newsite = next(siteIter)
+              newsite = next(siteIter, None)
 
           elif not priorityQ.isEmpty():
               # intersection is smallest - this is a vector (circle) event 
@@ -346,7 +346,7 @@ class Site(object):
     def dump(self):
         print("Site #%d (%g, %g)" % (self.sitenum,self.x,self.y))
 
-    def __cmp__(self,other):
+    def _compare(self,other):
         if self.y < other.y:
             return -1
         elif self.y > other.y:
@@ -358,6 +358,24 @@ class Site(object):
         else:
             return 0
 
+    def __lt__(self,other):
+        return self._compare(other) == -1
+
+    def __le__(self,other):
+        return self._compare(other) in (-1,0)
+
+    def __gt__(self,other):
+        return self._compare(other) == 1
+
+    def __ge__(self,other):
+        return self._compare(other) in (1,0)
+
+    def __eq__(self,other):
+        return self._compare(other) == 0
+
+    def __ne__(self,other):
+        return self._compare(other) != 0
+    
     def distance(self,other):
         dx = self.x - other.x
         dy = self.y - other.y
@@ -445,7 +463,7 @@ class Halfedge(object):
         print("ystar: ",   self.ystar) 
 
 
-    def __cmp__(self,other):
+    def _compare(self,other):
         if self.ystar > other.ystar:
             return 1
         elif self.ystar < other.ystar:
@@ -456,6 +474,24 @@ class Halfedge(object):
             return -1
         else:
             return 0
+
+    def __lt__(self,other):
+        return self._compare(other) == -1
+
+    def __le__(self,other):
+        return self._compare(other) in (-1,0)
+
+    def __gt__(self,other):
+        return self._compare(other) == 1
+
+    def __ge__(self,other):
+        return self._compare(other) in (1,0)
+
+    def __eq__(self,other):
+        return self._compare(other) == 0
+
+    def __ne__(self,other):
+        return self._compare(other) != 0
 
     def leftreg(self,default):
         if not self.edge: 
@@ -534,7 +570,7 @@ class Halfedge(object):
 
         xint = (e1.c*e2.b - e2.c*e1.b) / d
         yint = (e2.c*e1.a - e1.c*e2.a) / d
-        if(cmp(e1.reg[1],e2.reg[1]) < 0):
+        if(e1.reg[1] < e2.reg[1]):
             he = self
             e = e1
         else:
@@ -652,7 +688,7 @@ class PriorityQueue(object):
         he.ystar  = site.y + offset
         last = self.hash[self.getBucket(he)]
         next = last.qnext
-        while((next is not None) and cmp(he,next) > 0):
+        while((next is not None) and he > next):
             last = next
             next = last.qnext
         he.qnext = last.qnext
@@ -712,20 +748,12 @@ class SiteList(object):
         site.sitenum = self.__sitenum
         self.__sitenum += 1
 
-    class Iterator(object):
-        def __init__(this,lst):  this.generator = (s for s in lst)
-        def __iter__(this):      return this
-        def __next__(this): 
-            try:
-                return next(this.generator)
-            except StopIteration:
-                return None
-
     def iterator(self):
-        return SiteList.Iterator(self.__sites)
+        for item in self.__sites:
+            yield item
 
     def __iter__(self):
-        return SiteList.Iterator(self.__sites)
+        return self.iterator() 
 
     def __len__(self):
         return len(self.__sites)
