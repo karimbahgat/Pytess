@@ -9,7 +9,7 @@ C++ version of a Delauney triangulator.
 Platforms
 ---------
 
-Tested on Python version 2.x.  As of 0.1.1 should work with both Python 2.x and 3.x.
+Tested on Python version 2.x and 3.x.
 
 Dependencies
 ------------
@@ -63,12 +63,18 @@ I just made it more convenient to use for end-users and uploaded it to
 PyPi. The real credit goes to Bill Simons/Carson Farmer and Steven
 Fortune for implementing the algorithm in the first place.
 
-Karim Bahgat (2015)
+-  Karim Bahgat
+-  Michael Currie
 
-CHANGES
+Changes
 -------
 
-0.1.1 (2017-09-07) - Python 3.x compatibility
+1.0.0 (2018-09-13)
+~~~~~~~~~~~~~~~~~~
+
+-  Bump to stable version
+-  Python 3.x compatibility
+
 0.1.0 (2015-06-25)
 ~~~~~~~~~~~~~~~~~~
 

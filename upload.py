@@ -1,7 +1,7 @@
-import pypi
+import pipy
  
 packpath = "pytess"
-pypi.define_upload(packpath,
+pipy.define_upload(packpath,
                    author="Karim Bahgat",
                    author_email="karim.bahgat.norway@gmail.com",
                    license="MIT",
@@ -16,10 +16,11 @@ pypi.define_upload(packpath,
                                 "Intended Audience :: Science/Research",
                                 'Intended Audience :: End Users/Desktop',
                                 "Topic :: Scientific/Engineering :: GIS"],
-                   changes=["First pypi release"]
+                   changes=["Bump to stable version",
+                            "Python 3.x compatibility"]
                    )
 
-pypi.generate_docs(packpath)
-#pypi.upload_test(packpath)
-#pypi.upload(packpath)
+pipy.generate_docs(packpath)
+#pipy.upload_test(packpath)
+#pipy.upload(packpath)
 

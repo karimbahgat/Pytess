@@ -9,7 +9,7 @@ Steven Fortune C++ version of a Delauney triangulator.
 
 ## Platforms
 
-Tested on Python version 2.x. 
+Tested on Python version 2.x and 3.x. 
 
 
 ## Dependencies
@@ -57,12 +57,13 @@ I just made it more convenient to use for end-users and uploaded it to PyPi.
 The real credit goes to Bill Simons/Carson Farmer and Steven Fortune for
 implementing the algorithm in the first place.
 
-Karim Bahgat (2015)
+- Karim Bahgat
+- Michael Currie
 
 """
 
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 
 
 from .main import *

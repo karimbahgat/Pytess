@@ -1,7 +1,11 @@
 
-## CHANGES
+## Changes
 
-### 0.1.1 (2017-09-07) - Python 3.x compatibility
+### 1.0.0 (2018-09-13)
+
+- Bump to stable version
+- Python 3.x compatibility
+
 ### 0.1.0 (2015-06-25)
 
 - First pypi release
