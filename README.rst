@@ -48,7 +48,7 @@ More Information:
 -----------------
 
 -  `Home Page <http://github.com/karimbahgat/Pytess>`__
--  `API Documentation <http://pythonhosted.org/Pytess>`__
+-  `API Documentation <https://karimbahgat.github.io/Pytess/>`__
 
 License:
 --------
@@ -69,7 +69,7 @@ Fortune for implementing the algorithm in the first place.
 Changes
 -------
 
-1.0.0 (2018-09-13)
+1.0.0 (2018-09-14)
 ~~~~~~~~~~~~~~~~~~
 
 -  Bump to stable version
