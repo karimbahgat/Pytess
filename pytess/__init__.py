@@ -42,7 +42,7 @@ And for voronoi diagrams:
 ## More Information:
 
 - [Home Page](http://github.com/karimbahgat/Pytess)
-- [API Documentation](http://pythonhosted.org/Pytess)
+- [API Documentation](https://karimbahgat.github.io/Pytess/)
 
 
 ## License:
